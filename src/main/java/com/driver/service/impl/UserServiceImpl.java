@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String userId) throws Exception {
-        long id = userRepository.findByUserId(userId).getId();
+        long id  = userRepository.findByUserId(userId).getId();
         userRepository.deleteById(id);
     }
 
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getUsers() {
         List<UserEntity> list = (List<UserEntity>) userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
-        for (UserEntity u : list) {
+        for(UserEntity u : list){
             UserDto userDto = new UserDto();
             userDto.setId(u.getId());
             userDto.setUserId(u.getUserId());
@@ -139,9 +139,10 @@ public class UserServiceImpl implements UserService {
 
     public UserResponse getUser_id(String id) throws Exception {
         UserDto userDto;
-        if (id.contains(".com")) {
+        if(id.contains(".com")){
             userDto = getUser(id);
-        } else {
+        }
+        else {
             userDto = getUserByUserId(id);
         }
 
@@ -170,7 +171,7 @@ public class UserServiceImpl implements UserService {
 
         String userId = userRepository.findByUserId(id).getUserId();
 
-        UserDto finalUserDto = updateUser(userId, userDto);
+        UserDto finalUserDto = updateUser(userId,userDto);
 
         UserResponse userResponse = new UserResponse();
         userResponse.setUserId(finalUserDto.getUserId());
@@ -186,7 +187,7 @@ public class UserServiceImpl implements UserService {
         operationStatusModel.setOperationName(RequestOperationName.DELETE.toString());
         try {
             deleteUser(id);
-        } catch (Exception e) {
+        } catch (Exception e){
             operationStatusModel.setOperationResult(RequestOperationStatus.ERROR.toString());
             return operationStatusModel;
         }
@@ -194,10 +195,10 @@ public class UserServiceImpl implements UserService {
         return operationStatusModel;
     }
 
-    public List<UserResponse> get_Users() {
+    public List<UserResponse> get_Users(){
         List<UserDto> userDtoList = getUsers();
         List<UserResponse> userResponseList = new ArrayList<>();
-        for (UserDto u : userDtoList) {
+        for(UserDto u : userDtoList){
             userResponseList.add(new UserResponse(u.getUserId(),
                     u.getEmail(), u.getFirstName(), u.getLastName()));
         }
@@ -211,6 +212,9 @@ public class UserServiceImpl implements UserService {
         return randomUUID.toString().replaceAll("_", "");
 
     }
+
+
+
 
 
 }

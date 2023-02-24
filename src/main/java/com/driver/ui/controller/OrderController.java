@@ -23,31 +23,26 @@ public class OrderController {
 	OrderServiceImpl orderServiceImpl;
 	@GetMapping(path="/{id}")
 	public OrderDetailsResponse getOrder(@PathVariable String id) throws Exception{
-
 		return orderServiceImpl.getOrder(id);
 	}
 
 	@PostMapping()
 	public OrderDetailsResponse createOrder(@RequestBody OrderDetailsRequestModel order) {
-
 		return orderServiceImpl.createOrder(order);
 	}
 
 	@PutMapping(path="/{id}")
 	public OrderDetailsResponse updateOrder(@PathVariable String id, @RequestBody OrderDetailsRequestModel order) throws Exception{
-
 		return orderServiceImpl.updateOrder(id,order);
 	}
 
 	@DeleteMapping(path = "/{id}")
 	public OperationStatusModel deleteOrder(@PathVariable String id) throws Exception {
-
 		return orderServiceImpl.delete_Order(id);
 	}
 
 	@GetMapping()
 	public List<OrderDetailsResponse> getOrders() {
-
 		return orderServiceImpl.get_Orders();
 	}
 }

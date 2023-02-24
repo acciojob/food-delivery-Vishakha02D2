@@ -1,6 +1,8 @@
 package com.driver.service.impl;
+
 import com.driver.io.entity.OrderEntity;
 import com.driver.io.repository.OrderRepository;
+
 import com.driver.model.request.OrderDetailsRequestModel;
 import com.driver.model.response.OperationStatusModel;
 import com.driver.model.response.OrderDetailsResponse;
@@ -73,7 +75,7 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDto> getOrders() {
         List<OrderEntity> list = (List<OrderEntity>) orderRepository.findAll();
         List<OrderDto> orderDtoList = new ArrayList<>();
-        for (OrderEntity o : list) {
+        for(OrderEntity o : list){
             OrderDto orderDto = new OrderDto();
             orderDto.setOrderId(o.getOrderId());
             orderDto.setId(o.getId());
@@ -85,11 +87,12 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderDtoList;
     }
+
     //===============================================
     //CONVERTOR (Here below we are having some functions which will do conversions)
     //===============================================
 
-    public OrderDetailsResponse createOrder(OrderDetailsRequestModel order) {
+    public OrderDetailsResponse createOrder(OrderDetailsRequestModel order){
 
         OrderDto orderDto = new OrderDto();
         orderDto.setItems(order.getItems());
@@ -137,7 +140,7 @@ public class OrderServiceImpl implements OrderService {
         orderDto.setCost(order.getCost());
         orderDto.setItems(order.getItems());
 
-        OrderDto finalOrderDto = updateOrderDetails(id, orderDto);
+        OrderDto finalOrderDto = updateOrderDetails(id,orderDto);
 
         //---------------------------
         //We will convert this finalOrderDto into OrderDetailsResponse
@@ -155,12 +158,12 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public OperationStatusModel delete_Order(String id) {
+    public OperationStatusModel delete_Order(String id){
         OperationStatusModel operationStatusModel = new OperationStatusModel();
         operationStatusModel.setOperationName(RequestOperationName.DELETE.toString());
-        try {
+        try{
             deleteOrder(id);
-        } catch (Exception e) {
+        } catch (Exception e){
             operationStatusModel.setOperationResult(RequestOperationStatus.ERROR.toString());
             return operationStatusModel;
         }
@@ -168,15 +171,18 @@ public class OrderServiceImpl implements OrderService {
         return operationStatusModel;
     }
 
-    public List<OrderDetailsResponse> get_Orders() {
+    public List<OrderDetailsResponse> get_Orders(){
         List<OrderDto> orderDtoList = getOrders();
         List<OrderDetailsResponse> orderDetailsResponseList = new ArrayList<>();
-        for (OrderDto o : orderDtoList) {
-            orderDetailsResponseList.add(new OrderDetailsResponse(o.getOrderId(), o.getCost(),
-                    o.getItems(), o.getUserId(), o.isStatus()));
+        for(OrderDto o : orderDtoList){
+            orderDetailsResponseList.add(new OrderDetailsResponse(o.getOrderId(),o.getCost(),
+                    o.getItems(),o.getUserId(),o.isStatus()));
         }
         return orderDetailsResponseList;
     }
+
+
+
 
 
 }
