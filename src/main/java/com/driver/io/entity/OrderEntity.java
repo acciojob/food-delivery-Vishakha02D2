@@ -6,10 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 
 
-import java.util.List;
-
-import javax.persistence.*;
-
 @Entity(name = "orderEntity")
 public class OrderEntity {
 
@@ -37,7 +33,7 @@ public class OrderEntity {
 	UserEntity userEntity;
 
 	@OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL)
-	List<com.driver.model.entity.FoodEntity> foodEntityList;
+	List<FoodEntity> foodEntityList;
 
 	public long getId() {
 		return id;

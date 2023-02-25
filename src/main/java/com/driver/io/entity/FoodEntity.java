@@ -1,6 +1,6 @@
-package com.driver.model.entity;
+package com.driver.io.entity;
 
-import com.driver.io.entity.OrderEntity;
+
 
 import javax.persistence.*;
 
