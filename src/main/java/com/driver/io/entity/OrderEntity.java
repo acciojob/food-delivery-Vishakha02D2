@@ -5,7 +5,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
-@Entity(name = "orders")
+
+import java.util.List;
+
+import javax.persistence.*;
+
+@Entity(name = "orderEntity")
 public class OrderEntity {
 
 	@Id
@@ -23,7 +28,7 @@ public class OrderEntity {
 
 	@Column(nullable = false)
 	private String userId;
-	
+
 	@Column(nullable = false)
 	private boolean status;
 
@@ -32,7 +37,7 @@ public class OrderEntity {
 	UserEntity userEntity;
 
 	@OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL)
-	List<FoodEntity> foodEntityList;
+	List<com.driver.model.entity.FoodEntity> foodEntityList;
 
 	public long getId() {
 		return id;

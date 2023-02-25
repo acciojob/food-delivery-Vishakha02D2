@@ -1,12 +1,11 @@
 package com.driver.io.entity;
-
-import java.io.Serializable;
-import java.util.List;
+import com.driver.io.entity.OrderEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "users")
-public class UserEntity{
+public class UserEntity {
 
 	@Id
 	@GeneratedValue
@@ -26,9 +25,11 @@ public class UserEntity{
 
 	@OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
 	private List<OrderEntity> orderEntityList;
+
 	public UserEntity() {
 
 	}
+
 
 	public long getId() {
 		return id;
